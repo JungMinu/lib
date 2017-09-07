@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]><html class="no-js ie6" lang="en" dir="ltr" data-date-format="non_us"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7" lang="en" dir="ltr" data-date-format="non_us"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8" lang="en" dir="ltr" data-date-format="non_us"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en" dir="ltr" data-date-format="non_us"><![endif]-->
+<!--[if IE 10]><html class="no-js ie10" lang="en" dir="ltr" data-date-format="non_us"><![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html class="no-js " lang="en" dir="ltr" data-date-format="non_us">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		     Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>N|Support Widget</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,600,700' rel='stylesheet' type='text/css' />
+    <link href="https://assets6.freshdesk.com/assets/cdn/widget-8fdf37c605ed4bc027eae5e7aa226046.css" media="screen" rel="stylesheet"
+        type="text/css" />
+    <link href="https://assets4.freshdesk.com/assets/cdn/ie_hacks-26e9607c64b28ed591c1fd1a32d4bb86.css" media="screen" rel="stylesheet"
+        type="text/css" />
+    <style>
+        .body {
+            font-family: 'Source Sans Pro' !important;
+            color: #4c5859 !important;
+        }
+
+        .feedback-body {
+            width: 560px !important;
+        }
+
+        .modal-header {
+            width: 560px !important;
+            height: 40px !important;
+            border-radius: 2px;
+            background-color: #f5f8f7 !important;
+            border: 0 !important;
+        }
+
+        .modal-widget {
+            width: 560px !important;
+        }
+
+        .btn {
+            width: 500px !important;
+            height: 40px !important;
+            border-radius: 2px !important;
+            border: solid 1px #e1e7e6 !important;
+            background: #f5f8f7 !important;
+            font-size: 14px !important;
+            letter-spacing: 1.8px !important;
+            text-align: center !important;
+            color: #4c5859 !important;
+            float: center !important;
+            text-transform: uppercase;
+        }
+
+        .dropdown_blank {
+            display: none !important;
+        }
+
+        .modal-footer {
+            padding: 0 !important;
+            padding-top: 14px !important;
+            text-align: center !important;
+            border: 0 !important;
+            width: 560px !important;
+            height: 78.9px !important;
+            border-radius: 2px !important;
+            background-color: #f5f8f7 !important;
+        }
+
+        .form-title {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+
+        .form-esc {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #89a19d;
+        }
+
+        .input[type=text] {
+            width: 500px !important;
+            height: 36px !important;
+            border-radius: 2px !important;
+            border: solid 1px #e1e7e6 !important;
+        }
+
+        .mobile-search-icon {
+            display: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+        //<![CDATA[
+
+        var validation_messages = { "required": "This field is required.", "remote": "Please fix this field.", "email": "Please enter a valid email address.", "url": "Please enter a valid URL.", "date": "Please enter a valid date.", "dateISO": "Please enter a valid date ( ISO ).", "number": "Please enter a valid number.", "digits": "Please enter only digits.", "creditcard": "Please enter a valid credit card number.", "equalTo": "Please enter the same value again.", "two_decimal_place_warning": "Value cannot have more than 2 decimal digits", "select_atleast_one": "Select at least one option.", "select2_minimum_limit": "Please type %{char_count} or more letters", "select2_maximum_limit": "You can only select %{limit} %{container}" }
+
+//]]>
+    </script>
+    <script src="https://assets9.freshdesk.com/assets/cdn/fdwidget-c93408865a968c0802eef975fe9abe4a.js" type="text/javascript"></script>
+    <script src="https://assets5.freshdesk.com/assets/cdn/pattern-003b01765fba0cba080b543211d3c30c.js" type="text/javascript"></script>
+    <script src="https://assets6.freshdesk.com/assets/cdn/redactor-db0748bb1f7ae529c57deb9d5c8bcd26.js" type="text/javascript"></script>
+    <script src="https://assets4.freshdesk.com/assets/cdn/i18n/en-1268c3ca53ab90e147caf063284c6021.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+
+        jQuery.extend(jQuery.validator.messages, validation_messages);
+
+//]]>
+    </script>
+    <!--[if IE]><script src="https://assets3.freshdesk.com/assets/cdn/excanvas-d428d950eee395a20e3f72f1855e632d.js" type="text/javascript"></script><![endif]-->
+
+
+    <script type="text/javascript">
+        var $J = jQuery.noConflict();
+        I18n.defaultLocale = "en";
+        I18n.locale = "en";
+    </script>
+
+</head>
+
+<body data-lang="en">
+    <div class="feedback-wrapper">
+        <div class="modal modal-widget" id="feedback-widget-container">
+
+            <link href="https://assets5.freshdesk.com/assets/cdn/responsive_widget-b792cc4ab132ec6311cad3a5ff9f7d44.css" media="screen"
+                rel="stylesheet" type="text/css" />
+            <input type="hidden" name="widgetType" id="widgetType" value="popup" />
+            <input id="searchInputFrom" name="searchInputFrom" type="hidden" />
+            <div class="modal-header feedback-header modal-body-change">
+                <div class="modal-header-bg">
+                    <h3 class="ellipsis lead pull-left form-title" title="Help &amp; Support">Help &amp; Support</h3>
+                    <span class="embedded-search">
+                      <h3 class="ellipsis lead pull-left search-text active" title="Search Articles">Search Articles</h3>
+                      <div class="embedded-hightlight"></div>
+                      <span id="search-count"></span>
+                    </span>
+                    <div class="pull-right search-panel">
+                        <div class="feedback-search">
+                            <span class="form-esc" id="esc-form">ESC</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-body feedback-body modal-body-change">
+                <form accept-charset="UTF-8" action="https://support.nodesource.com/widgets/feedback_widget?widgetType=popup" class="form form-widget"
+                    enctype="multipart/form-data" id="fd_feedback_widget" method="post">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="8abDMyLpdEUI1zvXGQ6OeG5D430eCImoV0iZ8clF+BQ="
+                        /></div>
+                    <div class="errorExplanation hide" id="errorExplanation">
+                        <h2>1 error prohibited this ticket from being saved</h2>
+                        <p>There were problems with the following fields:</p>
+                        <ul>
+                            <li id="feedback_widget_error"></li>
+                        </ul>
+                    </div>
+                    <div class="form-placeholder">
+                        <div class="control-group default_requester">
+                            <label class=" required control-label requester-label " for="helpdesk_ticket_email">Requester</label>
+                            <div class="controls   ">
+                                <div class="row-fluid">
+                                    <input class="email required" id="helpdesk_ticket_e" name="helpdesk_ticket[email]" placeholder="Email" size="30" type="text" />
+
+                                    <div id="name_field required" class="default_name_field hide">
+                                        <input class="text span12 name_field" placeholder="Your Name" name="helpdesk_ticket[name]" type="text" disabled="disabled"
+                                            data-user-name="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group default_subject">
+                            <label class=" required control-label subject-label " for="helpdesk_ticket_subject">Subject</label>
+                            <div class="controls   ">
+                                <input class=" required text span12" id="helpdesk_ticket_subject" name="helpdesk_ticket[subject]" size="30" type="text" />
+                            </div>
+                        </div>
+                        <div class="control-group default_description">
+                            <label class=" required control-label description-label " for="helpdesk_ticket_description">Description</label>
+                            <div class="controls   ">
+                                <textarea class=" required_redactor html_paragraph span12" cols="40" id="helpdesk_ticket_ticket_body_attributes_description_html"
+                                    name="helpdesk_ticket[ticket_body_attributes][description_html]" rows="6">
+</textarea>
+                                <div class="attach-wrapper single_file row-fluid new-attach " id="attachment-type" data-multifile-enable="false">
+                                    <div class="span1 attachment-wrapper">
+                                        <div class="dropdown dropup attachment-dropdown">
+                                            <a class="dropdown-toggle attach-link tooltip attachment-tooltip" data-original-title="Attach" twipsy-content-set="true"
+                                                data-placement="right" data-toggle="dropdown" href="#">
+          <span class="ficon-attachment" ></span><b class="caret"></b>
+        </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <li class="portal-attach">
+                                                    <a data-file-id="ticket" href="javascript:void(0)" class="attach-link-wrap">
+               Attach a file
+                <div class="attach-file attach-link-file" id="ticket-attach-container">
+                  <input type="file" name="emptyfile"
+                    id="ticket_file"
+                    data-attach-id="ticket"
+                    nameWhenFilled="helpdesk_ticket[attachments][][resource]"
+                    fileContainer="ticket-container"
+                    fileList="ticket-attachments"
+                    sendFocusTo="ticket-body"
+                    />
+                </div>
+            </a>
+                                                </li>
+                                                <li id="dropboxjs" data-app-key="85dxioyi0fh482p">
+                                                    <input type="hidden" id="ticket_url" name="dropboxURL" nameWhenFilled="[cloud_file_attachments][]" fileContainer="ticket-container"
+                                                        fileList="ticket-attachments" sendFocusTo="ticket-body" />
+                                                    <a href="#" class="dropbox_button" name="selected-file" id="db-chooser" data-holder="ticket_url" onclick='initDropbox(this); event.preventDefault();'>Attach from <b>Dropbox</b></a>
+                                                </li>
+
+                                                <script type="text/javascript">
+                                                    function setFormChangedFlagMultifile(inp) {
+                                                        // Do nothing
+                                                        // Function is needed so that error does not occur
+                                                    }
+                                                </script>
+
+                                                <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js"></script>
+                                                <script type="text/javascript">
+                                                    function initDropbox(inp) {
+                                                        Dropbox.choose({
+                                                            success: function (files) {
+                                                                function singleFile() {
+                                                                    var inputElement = jQuery(inp).data('holder');
+
+                                                                    jQuery('#' + inputElement)
+                                                                        .val(JSON.stringify({
+                                                                            link: files[0].link,
+                                                                            name: files[0].name,
+                                                                            provider: 'dropbox'
+                                                                        }))
+                                                                        .data('filename', files[0].name)
+                                                                        .data('provider', 'Dropbox');
+
+                                                                    Helpdesk.Multifile.addFileToList(jQuery('#' + inputElement));
+                                                                    newInput = Helpdesk.Multifile.duplicateInput(jQuery('#' + inputElement));
+                                                                    jQuery(inp).data('holder', newInput.attr('id'));
+                                                                }
+                                                                // for portal
+                                                                if (jQuery('.single_file').length !== 0) {
+                                                                    singleFile();
+                                                                }
+                                                                // for app
+                                                                else {
+                                                                    var attachments = JSON.stringify({
+                                                                        link: files[0].link,
+                                                                        name: escapeHtml(files[0].name),
+                                                                        provider: 'dropbox'
+                                                                    });
+                                                                    var cloud_file_object = [{
+                                                                        fileName: files[0].name,
+                                                                        provider: 'Dropbox',
+                                                                        attachments: attachments
+                                                                    }];
+                                                                    var file_list = window.localStorage.getItem('current-file-list');
+                                                                    jQuery("#attach-limt-" + file_list).hide();
+                                                                    jQuery("#attachment-template").tmpl({
+                                                                        render_type: "new",
+                                                                        type: "cloud",
+                                                                        files: cloud_file_object
+                                                                    }).appendTo(".multiple-filelist-" + file_list);
+                                                                }
+
+                                                                // Set formChanged to true
+                                                                if (files.length) {
+                                                                    setFormChangedFlagMultifile(inp)
+                                                                }
+                                                            },
+                                                            extensions: ""
+                                                        })
+                                                    }
+                                                </script>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="attachment_list_wrapper attachment_list_wrapper_sa">
+                                        <div class="attachments-list-form" id="ticket-container">
+
+                                            <div class="attachment_contents">
+                                                <div id="ticket-attachments" class="attachments-wrap shared_attachment_list">
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- screenshot-->
+                                    <div class="screenshot_wrapper omega align-right screenshot-wrapper-20">
+
+                                        <div class="screenshot-wrap controls">
+                                            <div class="ie8plusonly">
+                                                <div id="takescreen-btn">
+                                                    <span class="ficon-camera tooltip" data-original-title="Take Screenshot" twipsy-content-set="true" data-placement="left"></span>
+                                                    <span id="screenshot-loader" style="display:none;"><img src="https://support.nodesource.com/assets/animated/ajax-loader.gif" ></span>
+                                                </div>
+                                                <div class="flash" style="display:none"></div>
+                                                <div id="screenshot-wrap" style="display:none">
+                                                    <canvas class="f-screenshot" id="f-screenshot"></canvas>
+                                                    <a href="#" class="close screenshot-remove" onClick="remove_screenshot()">&times;</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--screenshot end -->
+
+                                </div>
+                                <script type="text/javascript">
+                                                    // Fix for Firefox/IE - To override :hover style persistance after click on input[type=file] element
+                                                    // global mutifile key
+
+                                                    jQuery('div.attach-wrapper a[data-toggle="dropdown"]').bind('click', function () {
+                                                        jQuery(this).parents('div.attach-wrapper').find('a.attach-link-wrap').first().css({
+                                                            'background-color': 'inherit',
+                                                            'background-image': 'inherit',
+                                                            'color': 'inherit',
+                                                            'box-shadow': 'inherit'
+                                                        });
+                                                    });
+                                                    jQuery('li.portal-attach a.attach-link-wrap')
+                                                        .bind('mouseover', function () {
+                                                            jQuery(this).removeAttr('style');
+                                                        })
+                                                        .bind('mousemove', function (event) {
+                                                            // Fix to move "Browse" button along with mouse pointer - fix for IE.
+                                                            p = jQuery(this).find('div').first();
+                                                            newLeft = Math.min(175, Math.max(event.clientX - p.offset().left + p.position().left - 5, 0));
+                                                            window.title = newLeft;
+                                                            p.css({ left: newLeft, top: 0 });
+                                                        });
+                                </script>
+
+
+                                <script id="file-list-template" type="text/x-jquery-tmpl">
+                                    <div class="item">
+                                        <span>
+      {{if (file_valid) }}
+        <a href="javascript:void(0)" onmouseover="Helpdesk.Multifile.twispy()" onclick="Helpdesk.Multifile.remove(this); return false;" inputId="${inputId}" class="attachment-close tooltip" data-original-title="Remove" twipsy-content-set="true" data-placement="above"></a>
+      {{else}}
+      <div>
+        <span class="alert-invalid-attach-text">
+          Exceeds attachments size(Not Added)
+        </span>
+                                    </div>
+                                    {{/if}}
+                                    </span>
+                                    {{if (file_valid) }}
+                                    <span class="{{if (!file_valid) }} alert-invalid {{/if}} multi-filename">
+  		${filename} <span class="filesize">{{if (size != '0' && size != '0.00 KB') }} (${size}) {{/if}} </span>
+                                    </span>
+                                    {{/if}}
+                            </div>
+                            </script>
+
+
+
+                        </div>
+                    </div>
+                    <input id="helpdesk_ticket_source" name="helpdesk_ticket[source]" type="hidden" value="9" />
+            </div>
+            <select class="  dropdown_blank dynamic_sections" id="helpdesk_ticket_custom_field_product_227874" name="helpdesk_ticket[custom_field][product_227874]">
+                    <option value="N|Solid" data-id="6000786315">N|Solid</option>
+                    <option value="NCM" data-id="24000006325">NCM</option>
+                    <option value="Node.js" data-id="6000786317">Node.js</option>
+                    <option value="Distributions" data-id="6000786318">Distributions</option>
+                    <option value="NodeSource" data-id="6000976910">NodeSource</option>
+            </select>
+        </div>
+        <div class="modal-footer feedback-footer modal-body-change">
+            <input type="hidden" id="submit_message" value="" />
+            <input type="hidden" name="retainParams" id="retainParams" value="{&quot;widgetType&quot;:&quot;popup&quot;}" />
+
+            <input class="btn" data-loading-text="Submitting.." id="helpdesk_ticket_submit" name="commit" type="submit" value="Send Feedback"
+            />
+            <input id="meta_user_agent" name="meta[user_agent]" type="hidden" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
+            />
+            <input id="meta_referrer" name="meta[referrer]" type="hidden" value="" />
+
+            </form>
+
+            <a class="mobile-search-icon" id="mobile-search-icon" href="#">
+      <span id="mobile-counter"></span>
+      <span class="wicon-mobile-search"></span>
+    </a>
+            <input type="hidden" name="responsive" id="responsive" value="" />
+            <div class="modal-panel suggest-panel" id="feedback-suggest">
+                <form class="hc-search-form" autocomplete="off" action="/support/search/solutions" id="hc-search-form">
+                    <div class="suggest-search">
+                        <input placeholder="Search" type="text" id="fs-input" name="term" class="span12 special searchField" value="" rel="page-search"
+                            data-max-matches="10">
+                    </div>
+                </form>
+                <div id="panel-content" class="panel-content feedback-suggest-panel hide">
+                    <!-- <h4 id="ws-results-title">Search results</h4> -->
+                    <ul class="unstyled" id="ws-results"></ul>
+                </div>
+                <div id="panel-info" class="panel-info">
+                    <h2 class="lead">Search our <br /> Knowledge base </h2>
+                    <a href="/support/solutions" class="link-pointer" target="_blank">or Browse articles</a>
+                </div>
+            </div>
+
+            <script id="ws-tmpl" type="text/x-jquery-tmpl">
+                <li>
+                    <a href="${url}" target="_blank">
+                        <div class="ellipsis">{{html title}}</div>
+                    </a>
+                    <!-- <p class="help-text">{{html desc}}</p> -->
+                </li>
+            </script>
+            <script type="text/javascript">
+                                                    document.getElementById('esc-form').onclick = function () {
+                                                        parent.postMessage("close", '*');
+                                                    }
+                                                    var suggestQuery, suggestDelay, suggestForSubject = true;
+                                                    window['suggest-cache'] = {};
+
+                                                    jQuery("#feedback-widget-container").addClass("modal-panel-active");
+
+                                                    var suggestResponse = function (data, term) {
+                                                        var searchInputFrom = jQuery("#searchInputFrom").val();
+                                                        var formTitleWidth = jQuery('.form-title').width(), searchTextWidth = jQuery('.search-text').width(), searchTextPadding = formTitleWidth + 30;
+                                                        jQuery("#mobile-counter").removeClass("mobile-counter").text("")
+                                                        jQuery("#subject-mobile-counter").removeClass("subject-mobile-counter").text("");
+                                                        jQuery("#search-count").removeClass("search-count").text("");
+
+                                                        if (data.item.length > 0) {
+                                                            if (data.count < 100) {
+                                                                jQuery("#mobile-counter,#search-count").text(data.count)
+                                                                jQuery("#subject-mobile-counter").text(data.count + " matching articles")
+                                                            }
+                                                            else {
+                                                                jQuery("#mobile-counter,#search-count").text("99+")
+                                                                jQuery("#subject-mobile-counter").text("99+ matching articles")
+                                                            }
+                                                            jQuery("#mobile-counter").addClass("mobile-counter");
+                                                            jQuery("#search-count").addClass("search-count");
+                                                            jQuery("#subject-mobile-counter").addClass("subject-mobile-counter");
+                                                            jQuery("#ws-results")
+                                                                .html(jQuery.tmpl(jQuery("#ws-tmpl").template(), data.item));
+
+                                                            if (data.item.length >= 5) {
+                                                                jQuery("#ws-results").append("<li class='show_all_results'><a href='/support/search/solutions?term=" + term + "' target='_blank'><div>Show all results</div></a></li>")
+                                                            }
+                                                            if (jQuery('.embedded-hightlight').hasClass('embedded-highlight-move')) {
+                                                                jQuery('.embedded-hightlight').addClass('embedded-highlight-move').css({ 'width': +(searchTextWidth + jQuery('#search-count').outerWidth()) + 'px' });
+                                                            }
+
+                                                            jQuery("#panel-content").show()
+                                                            if (searchInputFrom == "Subject") {
+                                                                FeedbackSuggest(true);
+                                                            }
+
+                                                        } else if (searchInputFrom == "Subject") {
+                                                            jQuery("#panel-info").show();
+                                                            jQuery("#fs-input").val("");
+                                                        }
+                                                        else {
+                                                            jQuery("#ws-results").html("<div class='no-result ellipsis'>No results for " + escapeHtml(term) + "</div>")
+                                                            jQuery("#panel-content").show();
+                                                        }
+
+                                                        jQuery("#fs-input").removeClass("loading-right");
+                                                    }
+
+                                                    var callbackToSolutionSearch = function (string) {
+                                                        var term = string.trim(),
+                                                            cache = window['suggest-cache'],
+                                                            suggest_url = "/support/search/solutions.json",
+                                                            request = { max_matches: 5, term: term, need_count: 'true' };
+
+                                                        if (suggestQuery) suggestQuery.abort();
+
+                                                        if (term in cache || term == '') {
+                                                            suggestResponse(cache[term], term)
+                                                            return
+                                                        }
+                                                        jQuery("#fs-input").addClass("loading-right");
+
+                                                        suggestQuery = jQuery.getJSON(suggest_url, request, function (data, status, xhr) {
+                                                            window['suggest-cache'][term] = data;
+                                                            suggestResponse(data, term)
+                                                        });
+                                                    }
+
+                                                    jQuery("#helpdesk_ticket_subject").on("blur keydown change paste", function (ev) {
+                                                        jQuery("#searchInputFrom").val("Subject");
+                                                        var responsiveWidget = jQuery("#responsive").val();
+                                                        var searchString = this.value.replace(/^\s+|\s+$/g, "");
+
+                                                        if (searchString != '' && searchString.length >= 2) {
+                                                            jQuery("#fs-input").val(this.value);
+                                                            jQuery("#panel-content").hide();
+                                                        } else {
+                                                            jQuery('#subject-mobile-counter').removeClass("subject-mobile-counter").text("");
+                                                            jQuery('#fs-input').val('');
+                                                        }
+                                                        searchKnowledgeBase(this.value);
+                                                    });
+
+                                                    jQuery("#fs-input").on("keydown change paste", function (ev) {
+                                                        jQuery("#searchInputFrom").val("Search");
+
+                                                        var $this = jQuery(this);
+                                                        clearTimeout(suggestDelay);
+                                                        suggestDelay = setTimeout(function () {
+                                                            suggestForSubject = false
+                                                            searchKnowledgeBase($this.val());
+                                                        }, 500)
+
+                                                        if (ev.keyCode == 13) {
+                                                            ev.preventDefault();
+                                                            return false;
+                                                        }
+                                                    });
+
+                                                    jQuery('.embedded-wrapper .form-title').live('click', function () {
+                                                        EmbeddedSearch(true);
+                                                    });
+                                                    jQuery('.embedded-wrapper .search-text').live('click', function () {
+                                                        EmbeddedSearch(false);
+                                                    });
+                                                    var checkScrollBars = function () {
+                                                        if (jQuery('.modal-body').hasScrollBar()) {
+                                                            jQuery('.modal-body').css({ paddingRight: 0 });
+                                                        }
+                                                    }
+                                                    checkScrollBars();
+                                                    function EmbeddedSearch(status) {
+                                                        var formTitleWidth = jQuery('.form-title').width(), searchTextWidth = jQuery('.search-text').width(), searchTextPadding = formTitleWidth + 30;
+                                                        if (status) {
+                                                            jQuery('.embedded-body').removeClass('embedded-body-hide');
+                                                            jQuery('#feedback-suggest').removeClass('feedback-suggest-show');
+                                                            jQuery('.embedded-wrapper .search-text').addClass('active');
+                                                            jQuery('.embedded-wrapper .form-title').removeClass('active');
+                                                            jQuery('#feedback-suggest').removeClass('show-suggest');
+                                                            jQuery('.embedded-hightlight').css({ 'width': (formTitleWidth + 'px'), 'transform': 'translateX(0px)' }).removeClass('embedded-highlight-move');
+                                                            jQuery('#helpdesk_ticket_submit').show();
+                                                        } else {
+                                                            jQuery('#helpdesk_ticket_submit').hide();
+                                                            jQuery('.embedded-body').addClass('embedded-body-hide');
+                                                            jQuery('#feedback-suggest').addClass('feedback-suggest-show');
+                                                            jQuery('.embedded-wrapper .form-title').addClass('active');
+                                                            jQuery('.embedded-wrapper .search-text').removeClass('active');
+                                                            if (jQuery('.search-count').text() != '') {
+                                                                jQuery('.embedded-hightlight').addClass('embedded-highlight-move').css({ 'width': +(searchTextWidth + jQuery('#search-count').outerWidth()) + 'px', 'transform': 'translateX(' + searchTextPadding + 'px)' });
+                                                            } else {
+                                                                jQuery('.embedded-hightlight').addClass('embedded-highlight-move').css({ 'width': +searchTextWidth + 'px', 'transform': 'translateX(' + searchTextPadding + 'px)' });
+                                                            }
+                                                            setTimeout(function () {
+                                                                jQuery('#feedback-suggest').addClass('show-suggest');
+                                                                jQuery('#fs-input').focus();
+                                                            }, 350)
+                                                        }
+                                                    }
+                                                    function searchKnowledgeBase(searchInput) {
+                                                        var searchString = searchInput.replace(/^\s+|\s+$/g, "");
+
+                                                        if (searchString != '' && searchString.length >= 2) {
+                                                            jQuery("#fs-input").addClass("loading-right");
+                                                            jQuery("#panel-info").hide();
+                                                            callbackToSolutionSearch(searchString);
+                                                        } else {
+                                                            jQuery("#fs-input").removeClass("loading-right");
+                                                            jQuery("#ws-results").empty();
+                                                            jQuery("#panel-content").hide()
+                                                            jQuery("#panel-info").show();
+
+                                                            suggestForSubject = true;
+
+                                                            jQuery("#mobile-counter").removeClass("mobile-counter").text("")
+                                                            jQuery("#subject-mobile-counter").removeClass("subject-mobile-counter").text("");
+                                                            jQuery('#search-count').removeClass("search-count").text("");
+                                                            if (jQuery('.embedded-hightlight').hasClass('embedded-highlight-move')) {
+                                                                jQuery('.embedded-hightlight').css({ 'width': + jQuery('.search-text').width() + 'px' });
+                                                            } else {
+                                                                jQuery('.embedded-hightlight').css({ 'width': + jQuery('.form-title').width() + 'px' });
+                                                            }
+                                                        }
+                                                    }
+                                                    jQuery('.search-panel').on('click', function (e) {
+                                                        if (jQuery('.search-help').attr('data-search-option') == 'true') {
+                                                            FeedbackSuggest(true);
+                                                            jQuery('#fs-input').focus();
+                                                        }
+                                                        else if (jQuery('.search-help').attr('data-search-option') == 'false') {
+                                                            FeedbackSuggest(false);
+                                                        }
+                                                    });
+
+                                                    // Resize popup feedback widget
+                                                    function FeedbackSuggest(status) {
+                                                        if (!jQuery('.embedded-wrapper').is(':visible') && !jQuery('html').hasClass('responsive-widget-wrap')) {
+                                                            if (status) {
+                                                                jQuery('.feedback-wrapper').addClass('feedback-wrapper-change');
+                                                                jQuery('#feedback-suggest').addClass('feedback-suggest-change');
+                                                                jQuery('.feedback-search-icon').addClass('feedback-search-icon-suggest').find('i').removeClass('ficon-search').addClass('ficon-cross');
+                                                                jQuery('.search-help').replaceWith('<span class="search-help" data-search-option=false>Close search</span>')
+                                                                jQuery('.search-help').addClass('close-article');
+                                                            } else {
+                                                                jQuery('.feedback-wrapper ').addClass('feedback-wrapper-change-close');
+                                                                jQuery('#feedback-suggest').addClass('animate-suggest-close');
+                                                                jQuery('.feedback-search-icon').removeClass('feedback-search-icon-suggest').find('i').removeClass('ficon-cross').addClass('ficon-search');
+                                                                jQuery('.search-help').replaceWith('<span class="search-help" data-search-option=true>Search Articles</span>')
+                                                                jQuery('.search-help').removeClass('close-article');
+                                                                window.setTimeout(function () {
+                                                                    jQuery('#feedback-suggest').removeClass('animate-suggest-close feedback-suggest-change');
+                                                                    jQuery('.feedback-wrapper ').removeClass('feedback-wrapper-change-close feedback-wrapper-change');
+                                                                }, 300);
+                                                            }
+                                                            parent.postMessage((status ? 'showsearch' : 'hidesearch'), "*");
+                                                        }
+                                                    }
+                                                    //send message to parent to get parent size
+                                                    function getFrameSize() {
+                                                        parent.postMessage('get_parent_size', '*');
+                                                        if (jQuery('#feedback-widget-container').hasClass('modal-widget'))
+                                                            jQuery('.feedback-wrapper').addClass('feedback-wrapper-container')
+                                                    }
+                                                    // twipsy trigger for camera icon
+                                                    jQuery('document').ready(function () {
+                                                        jQuery('.attachment-tooltip,.ficon-camera').on('mouseover', function () {
+                                                            jQuery(".attachment-tooltip,.ficon-camera").twipsy({
+                                                                trigger: 'hover'
+                                                            });
+                                                        });
+                                                    });
+
+                                                    jQuery(window).on('load resize', getFrameSize);
+
+                                                    //event handler declaration
+                                                    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent",
+                                                        eventer = window[eventMethod],
+                                                        messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+                                                    // Listen to message from child window to resize feedback widget
+                                                    eventer(messageEvent, function (e) {
+                                                        var offsetWidth;
+                                                        if (e.data && typeof (e.data) === 'string') {
+                                                            if (e.data.indexOf("offsetWidth") != -1) {
+                                                                offsetWidth = e.data.split(":")[1];
+                                                                if (offsetWidth && offsetWidth < 768) {
+                                                                    jQuery('.feedback-wrapper').removeClass('feedback-wrapper-change');
+                                                                    jQuery('#feedback-suggest').removeClass('feedback-suggest-change');
+                                                                    jQuery('.feedback-header,.feedback-body,.feedback-footer').removeClass('modal-body-change');
+                                                                    if (jQuery('.feedback-search-icon').hasClass('feedback-search-icon-suggest')) {
+                                                                        jQuery('.feedback-search-icon').removeClass('feedback-search-icon-suggest');
+                                                                        jQuery('.search-help').replaceWith('<span class="search-help" data-search-option=true>Search Articles</span>');
+                                                                    }
+                                                                    jQuery('html').addClass('responsive-widget-wrap');
+                                                                } else {
+                                                                    jQuery('html').removeClass('responsive-widget-wrap');
+                                                                    jQuery('.feedback-header,.feedback-body,.feedback-footer').addClass('modal-body-change');
+                                                                }
+                                                            }
+                                                            if (e.data.indexOf("closewidget") != -1) {
+                                                                MobileWidget(e.data);
+                                                            }
+                                                        }
+
+                                                    });
+                                                    jQuery(document).ready(function () {
+                                                        var responsiveWidget = jQuery("#responsive").val();
+                                                        if (responsiveWidget != "no") {
+                                                            jQuery("#helpdesk_ticket_subject").after("<a href='#' id='subject-mobile-counter'></a>")
+                                                            jQuery('.mobile-search-icon,.modal-widget #subject-mobile-counter').click(function (ev) {
+                                                                ev.preventDefault()
+                                                                MobileWidget('');
+                                                            });
+                                                            jQuery('.embedded-wrapper #subject-mobile-counter').on('click', function (ev) {
+                                                                ev.preventDefault();
+                                                                jQuery('#fs-input').focus();
+                                                            });
+                                                        }
+                                                        if (jQuery('.feedback-wrapper').hasClass('embedded-wrapper')) {
+                                                            jQuery("#helpdesk_ticket_subject").after("<a href='#' id='subject-mobile-counter'></a>");
+                                                        }
+                                                        jQuery('.embedded-wrapper #subject-mobile-counter,#search-count').live('click', function (ev) {
+                                                            ev.preventDefault();
+                                                            jQuery('#fs-input').focus();
+                                                            EmbeddedSearch(false);
+                                                        });
+                                                    });
+                                                    // toggle search result for mobile popup widget
+                                                    function MobileWidget(message) {
+                                                        if (!jQuery('.feedback-wrapper').hasClass('embedded-wrapper')) {
+                                                            jQuery('.modal-body').toggleClass('modal-body-hide');
+                                                            jQuery('.modal-panel').toggleClass('modal-panel-show');
+                                                            jQuery('#feedback-suggest').toggle();
+                                                            jQuery('.mobile-search-icon').toggleClass('mobile-search-icon-selected');
+                                                            jQuery('#helpdesk_ticket_submit').toggle();
+                                                            if (message != 'closewidget')
+                                                                parent.postMessage('arrow', "*"); // call parent to display goback icon
+                                                        }
+                                                    }
+                                                    jQuery("form").submit(function (e) {
+                                                        if (jQuery('#helpdesk_ticket_subject').val() && jQuery('#helpdesk_ticket_e').val()) {
+                                                            alert("Thanks for giving us your feedback!")
+                                                            parent.postMessage("close", '*')
+                                                        }
+                                                    });
+            </script>
+            <iframe id="nswidget-submit-frame" name="nswidget-submit-frame" src="about:blank" frameborder="0" scrolling="auto"
+                allowTransparency="true" style="position:absolute; visibility:hidden; width:0px; height:0px;">
+            </iframe>
+            <script type="text/javascript">
+                                                    //<![CDATA[
+
+                                                    jQuery('.modal-body').scroll(function () {
+                                                        if (this.scrollTop > 8) {
+                                                            jQuery(this).parent().addClass("modal-scroll");
+                                                        } else {
+                                                            jQuery(this).parent().removeClass("modal-scroll");
+                                                        }
+                                                    });
+
+                                                    jQuery(".description-label").on("click", function () {
+                                                        jQuery(".redactor_editor").focus();
+                                                    });
+
+                                                    jQuery(document).ready(function () {
+                                                        var disabled_options = [];
+                                                        var disabled_custom_options = [];
+                                                        for (var i = 0; i < disabled_options.length; i++) {
+                                                            var key = disabled_options[i];
+                                                            if (key == "requester") {
+                                                                jQuery("#helpdesk_ticket_email").attr("readonly", "readonly");
+                                                            }
+                                                            else if (key == "name") {
+                                                                jQuery("input[name='helpdesk_ticket[name]']").attr("readonly", "readonly");
+                                                            }
+                                                            else if (jQuery("#helpdesk_ticket_" + key)) {
+                                                                jQuery("#helpdesk_ticket_" + key).attr("readonly", "readonly");
+                                                            }
+                                                        }
+                                                        for (var i = 0; i < disabled_custom_options.length; i++) {
+                                                            var key = disabled_custom_options[i];
+                                                            if (jQuery("#helpdesk_ticket_custom_field_" + key)) {
+                                                                jQuery("#helpdesk_ticket_custom_field_" + key).attr("readonly", "readonly");
+                                                            }
+                                                        }
+
+                                                        var prepopulate_name = ""
+
+                                                        var embeddedWidget = jQuery("#widgetType").val();
+                                                        if (embeddedWidget == "embedded") {
+                                                            jQuery("#feedback-widget-container").removeClass("modal modal-widget");
+                                                            jQuery(".feedback-wrapper").addClass("embedded-wrapper");
+                                                            jQuery(".modal-body").addClass("embedded-body");
+                                                            jQuery(".modal-panel").addClass("embedded-panel");
+                                                            jQuery(".modal-footer").addClass("embedded-footer");
+                                                            jQuery(".suggest-search").addClass("embedded-search-input");
+                                                            jQuery('.embedded-hightlight').css({ 'width': (jQuery('.form-title').width() + 'px') })
+                                                        }
+
+                                                        jQuery(".dynamic_sections")
+                                                            .on("change", function (e) {
+                                                                var id;
+                                                                var $el = jQuery(this);
+                                                                var selected = $el.find(':selected');
+                                                                if (selected.length > 0) {
+                                                                    id = selected.data().id;
+                                                                }
+                                                                var nextElements = $el.closest('div.control-group').nextAll();
+                                                                construct_section_elements(this, id, nextElements)
+                                                            });
+
+                                                        jQuery(window).on("load .dynamic_sections", function (e) {
+                                                            var id;
+                                                            var section_fields = jQuery(document).find('.dynamic_sections');
+                                                            section_fields.each(jQuery.proxy(function (index, data) {
+                                                                var selected = jQuery(data).parent().find(':selected');
+                                                                if (selected.length > 0) {
+                                                                    id = selected.data().id;
+                                                                }
+                                                                var nextElements = jQuery(data).closest('div.control-group').nextAll();
+                                                                construct_section_elements(data, id, nextElements)
+                                                            }, this));
+                                                        });
+
+                                                        function construct_section_elements(data, id, nextElements) {
+                                                            nextElements.each(jQuery.proxy(function (index, dataItem) {
+                                                                if (jQuery(dataItem).hasClass('ticket_section'))
+                                                                    dataItem.remove();
+                                                                else
+                                                                    return false;
+                                                            }, this));
+                                                            var element = jQuery('.picklist_section_' + id).parent();
+                                                            if (element.length != 0) {
+                                                                jQuery(jQuery('.picklist_section_' + id).val()
+                                                                    .replace(new RegExp('&lt', 'g'), '<')
+                                                                    .replace(new RegExp('&gt', 'g'), '>'))
+                                                                    .insertAfter(jQuery("#" + data.id).parents('.control-group'));
+                                                            }
+                                                        }
+                                                    });
+
+//]]>
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
