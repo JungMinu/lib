@@ -107,6 +107,11 @@
     <script src="https://assets4.freshdesk.com/assets/cdn/i18n/en-1268c3ca53ab90e147caf063284c6021.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+        function getParameterByName(name) {
+            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+        console.log(JSON.stringify(getParameterByName('queryString')))
         //<![CDATA[
 
         jQuery.extend(jQuery.validator.messages, validation_messages);
@@ -165,7 +170,8 @@
                             <label class=" required control-label requester-label " for="helpdesk_ticket_email">Requester</label>
                             <div class="controls   ">
                                 <div class="row-fluid">
-                                    <input class="email required" id="helpdesk_ticket_e" name="helpdesk_ticket[email]" placeholder="Email" size="30" type="text" />
+                                    <input class="email required" id="helpdesk_ticket_e" name="helpdesk_ticket[email]" placeholder="Email" size="30" type="text" value="minwoo+test@nodesource.com"
+                                    />
 
                                     <div id="name_field required" class="default_name_field hide">
                                         <input class="text span12 name_field" placeholder="Your Name" name="helpdesk_ticket[name]" type="text" disabled="disabled"
@@ -708,8 +714,8 @@
                                                         }
                                                     });
             </script>
-            <iframe id="nswidget-submit-frame" name="nswidget-submit-frame" src="about:blank" frameborder="0" scrolling="auto"
-                allowTransparency="true" style="position:absolute; visibility:hidden; width:0px; height:0px;">
+            <iframe id="nswidget-submit-frame" name="nswidget-submit-frame" src="about:blank" frameborder="0" scrolling="auto" allowTransparency="true"
+                style="position:absolute; visibility:hidden; width:0px; height:0px;">
             </iframe>
             <script type="text/javascript">
                                                     //<![CDATA[
